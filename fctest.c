@@ -72,7 +72,7 @@ void fcTestNull(
 	if (expected) {
 		printf("    fcTestNull: expected %p to be NULL: %s\n", expected, msg);
 		tc->failed++;
-		if (abortTest) longjmp(fcTestJmp, 1);
+		if (abortTest) siglongjmp(fcTestJmp, 1);
 		return;
 	}
 	tc->passed++;
@@ -87,7 +87,7 @@ void fcTestNotNull(
 	if (!expected) {
 		printf("    fcTestNull: expected %p to not be NULL: %s\n", expected, msg);
 		tc->failed++;
-		if (abortTest) longjmp(fcTestJmp, 1);
+		if (abortTest) siglongjmp(fcTestJmp, 1);
 		return;
 	}
 	tc->passed++;
