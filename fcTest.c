@@ -6,7 +6,7 @@
 #include <setjmp.h>
 #include <signal.h>  // see: man 7 signal-safety
 
-#include "fctest.h"
+#include "fcTest.h"
 
 ///////////////////////////////////////////////////////////////////////
 // manage tests
@@ -139,7 +139,7 @@ int fcTestRunner(int argc, const char *argv[]) {
   		  printf("  %s\n", "FAILED");
   	  } else {
   	    passedTests++;
-  		  printf("  %s\n", "OK");
+  		  printf("  %s\n", "PASSED");
   	  }
   	} else if (testResult == 1) {
   	  abortedTests++;
@@ -154,13 +154,16 @@ int fcTestRunner(int argc, const char *argv[]) {
 
   printf("\n------------------\n");
   printf("Tests:\n");
+  printf("   skipped: %d\n", skippedTests);
+  printf("  --------------\n");
   printf("    passed: %d\n", passedTests);
   printf("    failed: %d\n", failedTests);
   printf("   aborted: %d\n", abortedTests);
-  printf("   skipped: %d\n", skippedTests);
   printf("  signaled: %d\n", signaledTests);
+  printf("  --------------\n");
   printf("     total: %d\n",
     (passedTests+failedTests+abortedTests+skippedTests+signaledTests)
   );
   printf("------------------\n");
+  return failedTests+abortedTests+signaledTests;
 }
