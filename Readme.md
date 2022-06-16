@@ -47,11 +47,15 @@ Any or all of `testData`, `setupTest` and `teardownTest` can be `NULL`.
 A `testRunner` must have the following prototype:
 
 ```
-void ATest(FCTestCase* tc, void* data);
+void ATest(FCTestCase* tc, void* data, const char* aMessage, int abortTest);
 ```
 
-Where `tc` is used to track the number of assertions which pass or fail,
-and `data` is a `(void*)` (which might be `NULL`) points to any test data.
+Where `tc` is used to track the number of assertions which pass or fail.
+The `data` argument is a `(void*)`, which might be `NULL`, which points to
+any test data. The `aMessage` argument is a message to be printed if this
+(sub)test fails. If the `abortTest` arugment is `TRUE` then the whole test
+case is aborted. If the `abortTest` arugment is `FALSE` then subsequent
+(sub)tests in the current test case will be tested.
 
 Both the `setupTest` and `teardownTest` functions have the following
 prototype:
