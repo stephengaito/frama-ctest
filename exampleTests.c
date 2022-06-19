@@ -23,3 +23,16 @@ int main(int argc, const char *argv[]) {
 
 	return fcTestRunner(argc, argv);
 }
+
+#ifdef __FRAMAC__
+
+int evaMain(void) {
+  char *argv[3];
+  argv[0] = "evaMain";
+  argv[1] = "Suite1";
+  argv[2] = NULL;
+
+  return main(2, argv);
+}
+
+#endif
